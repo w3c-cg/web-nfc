@@ -4022,7 +4022,7 @@
         </ol>
       </li>
       <li>
-        If |ndef|'s |typeNameField| is `1` ([=well-known type record=]), then
+        Otherwise, if |ndef|'s |typeNameField| is `1` ([=well-known type record=]), then
         <ol>
           <li>
             If |ndef|'s |type:string| is <strong>"`T`" (`0x54`)</strong>,
@@ -4030,35 +4030,35 @@
             <a>parse an NDEF text record</a> on |ndef|.
           </li>
           <li>
-            If |ndef|'s |type:string| is <strong>"`U`" (`0x55`)</strong>,
+            Otherwise, if |ndef|'s |type:string| is <strong>"`U`" (`0x55`)</strong>,
             set |record| to the result of running
             <a>parse an NDEF URL record</a> on |ndef|.
           </li>
           <li>
-            If |ndef|'s |type:string| is <strong>"`Sp`" (`0x53` `0x70`)</strong>,
+            Otherwise, if |ndef|'s |type:string| is <strong>"`Sp`" (`0x53` `0x70`)</strong>,
             set |record| to the result of running
             <a>parse an NDEF smart-poster record</a> on |ndef|.
           </li>
           <li>
-            If |ndef|'s |type:string| is <strong>"`s`" (`0x73`)</strong>
+            Otherwise, if |ndef|'s |type:string| is <strong>"`s`" (`0x73`)</strong>
             and if |context| is equal to `"smart-poster"`,
             set |record| to the result of running
             <a>parse a smart-poster size record</a> on |ndef|.
           </li>
           <li>
-            If |ndef|'s |type:string| is <strong>"`t`" (`0x74`)</strong>
+            Otherwise, if |ndef|'s |type:string| is <strong>"`t`" (`0x74`)</strong>
             and if |context| is equal to `"smart-poster"`,
             set |record| to the result of running
             <a>parse a smart-poster type record</a> on |ndef|.
           </li>
           <li>
-            If |ndef|'s |type:string| is <strong>"`act`" (`0x61` `0x63` `0x74`)
+            Otherwise, if |ndef|'s |type:string| is <strong>"`act`" (`0x61` `0x63` `0x74`)
             </strong> and if |context| is equal to `"smart-poster"`,
             set |record| to the result of running
             <a>parse a smart-poster action record</a> on |ndef|.
           </li>
           <li>
-            If running the <a>validate local type</a> steps on
+            Otherwise, if running the <a>validate local type</a> steps on
             |ndef|'s |type:string| returns true,
             <ol>
               <li>
@@ -4077,26 +4077,26 @@
         </ol>
       </li>
       <li>
-        If |ndef|'s |typeNameField| is `2` (<a>MIME type record</a>), then
+        Otherwise, if |ndef|'s |typeNameField| is `2` (<a>MIME type record</a>), then
         set |record| to the result of running
         <a>parse an NDEF MIME type record</a> on |ndef|, or make sure that
         the underlying platform provides equivalent values to the |record|
         object's properties.
       </li>
       <li>
-        If |ndef|'s |typeNameField| is `3` (<a>absolute-URL record</a>),
+        Otherwise, if |ndef|'s |typeNameField| is `3` (<a>absolute-URL record</a>),
         then set |record| to the result of running
         <a>parse an NDEF absolute-URL record</a> on |ndef|.
       </li>
       <li>
-        If |ndef|'s |typeNameField| is `4` (<a>external type record</a>),
+        Otherwise, if |ndef|'s |typeNameField| is `4` (<a>external type record</a>),
         then set |record| to the result of running
         <a>parse an NDEF external type record</a> on |ndef|, or make sure that
         the underlying platform provides equivalent values to the |record|
         object's properties.
       </li>
       <li>
-        If |ndef|'s |typeNameField| is `5` (<a>unknown record</a>)
+        Otherwise, if |ndef|'s |typeNameField| is `5` (<a>unknown record</a>)
         then set |record| to the result of running
         <a>parse an NDEF unknown record</a> on |ndef|, or make sure that the
         underlying platform provides equivalent values to the |record| object's
@@ -4104,6 +4104,9 @@
       </li>
       <li>
         Otherwise [= exception/throw =] a {{TypeError}}.
+      </li>
+      <li>
+        Return |record|.
       </li>
     </ol>
   </div>
