@@ -3511,7 +3511,7 @@
             {{"InvalidStateError"}} and return |p|.
           </li>
           <li>
-            Let |options:NDEFMakeReadOnlyOptions| be the second argument.
+            Let |options:NDEFMakeReadOnlyOptions| be the first argument.
           </li>
           <li>
             Let |signal:AbortSignal| be the |options|’ dictionary member
@@ -3536,8 +3536,9 @@
             [=promise/React=] to |p|:
             <ol>
               <li>
-                If |p| was settled (fulfilled or rejected), then clear the
-                <a>pending write tuple</a> if it exists.
+                If |p| was settled (fulfilled or rejected) and there is a
+                <a>pending makeReadOnly tuple</a> |tuple| whose promise is
+                |p|, then clear the <a>pending makeReadOnly tuple</a>.
               </li>
             </ol>
           </li>
@@ -3579,7 +3580,7 @@
                 </p>
               </li>
               <li>
-                Set <a>pending makeReadOnly tuple</a> to (`this`, |p|).
+                Set <a>pending makeReadOnly tuple</a> to (|p|, `this`).
               </li>
               <li>
                 Run the <a>start the NFC make read-only</a> steps whenever an
@@ -3617,7 +3618,7 @@
               <li>
                 Make |device| permanently read-only, using the
                 <a>NFC adapter</a> in communication range with |device|.
-              </li
+              </li>
               <li>
                 If the operation fails, reject |p| with
                 {{"NetworkError"}}
